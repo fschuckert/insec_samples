@@ -1,0 +1,17 @@
+diff --git a/Modules/vis/visualisations/dailyhistogram/dailyhistogram.php b/Modules/vis/visualisations/dailyhistogram/dailyhistogram.php
+index e7b3250..8cd460b 100644
+--- a/Modules/vis/visualisations/dailyhistogram/dailyhistogram.php
++++ b/Modules/vis/visualisations/dailyhistogram/dailyhistogram.php
+@@ -14,7 +14,11 @@
+   global $path, $embed;
+ 
+   $power = (int) get('power');
+-  $kwhd = (int) get('kwhd');
++if(get("kwhd") <= 0)
++{
++  get("kwhd") = 0;
++}
++$kwhd = get("kwhd");
+   if (isset($_GET['whw'])) {$whw = (int) $_GET['whw'];} else {$whw = 0;}	// Histogram feed
+ 
+   $currency = get('currency')?get('currency'):'&pound;';

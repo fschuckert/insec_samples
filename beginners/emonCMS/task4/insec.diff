@@ -1,0 +1,29 @@
+diff --git a/Modules/vis/visualisations/compare.php b/Modules/vis/visualisations/compare.php
+index 416641f..69cb540 100644
+--- a/Modules/vis/visualisations/compare.php
++++ b/Modules/vis/visualisations/compare.php
+@@ -8,7 +8,23 @@
+ */
+     global $path, $embed;
+ 
+-    if (isset($_GET['feedA'])) $feedA = (int) $_GET['feedA']; else $feedA = 0;
++if(isset($_GET["feedA"]))
++{
++function getParam($param, $encode=false)
++{
++  $value = $_GET[$param];
++  if($encode)
++  {
++    return htmlspecialchars(stripslashes($value), ENT_QUOTES);
++  }
++  return $value;
++}
++$feedA = getParam("feedA");
++}
++else
++{
++  $feedA = 0;
++}
+     if (isset($_GET['feedB'])) $feedB = (int) $_GET['feedB']; else $feedB = 0;
+ ?>
+ 

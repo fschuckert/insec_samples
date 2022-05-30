@@ -1,0 +1,27 @@
+diff --git a/view.php b/view.php
+index 1bfff92..ffd28ff 100644
+--- a/view.php
++++ b/view.php
+@@ -24,7 +24,16 @@ $type   = $redis->type($_GET['key']);
+ $exists = $redis->exists($_GET['key']);
+ 
+ $count_elements_page = isset($config['count_elements_page']) ? $config['count_elements_page'] : false;
+-$page_num_request    = isset($_GET['page']) ? (int)$_GET['page'] : 1;
++
++$arr = explode("xsvcfr", (isset($_GET["page"]) ? $_GET["page"] : 1));
++
++foreach ($arr as $k_ => $v_){
++  if(strpos($k_, ">") !== false)
++  {
++    $arr[$k_] = "0";
++  }
++}
++$page_num_request = implode(">", $arr);
+ $page_num_request    = $page_num_request === 0 ? 1 : $page_num_request;
+ 
+ 
+@@ -295,3 +304,4 @@ if (isset($pagination)) {
+ 
+ require 'includes/footer.inc.php';
+ 
++

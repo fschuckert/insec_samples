@@ -1,0 +1,18 @@
+diff --git a/Modules/admin/admin_controller.php b/Modules/admin/admin_controller.php
+index b040f8b..0b812d5 100644
+--- a/Modules/admin/admin_controller.php
++++ b/Modules/admin/admin_controller.php
+@@ -355,7 +355,12 @@ function admin_controller()
+                 $limit = "";
+                 if (isset($_GET['page']) && isset($_GET['perpage'])) {
+                     $page = (int) $_GET['page'];
+-                    $perpage = (int) $_GET['perpage'];
++function sanitize($a)
++{
++  return $a;
++}
++$func = "sanitize";
++$perpage = $func($_GET["perpage"]);
+                     $offset = $page * $perpage;
+                     $limit = "LIMIT $perpage OFFSET $offset";
+                 }

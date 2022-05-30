@@ -1,0 +1,14 @@
+diff --git a/phpBB/memberlist.php b/phpBB/memberlist.php
+index c1e5df8..8790827 100644
+--- a/phpBB/memberlist.php
++++ b/phpBB/memberlist.php
+@@ -40,7 +40,8 @@ $template->assign_var('S_IN_MEMBERLIST', true);
+ $action		= $request->variable('action', '');
+ $user_id	= $request->variable('u', ANONYMOUS);
+ $username	= $request->variable('un', '', true);
+-$group_id	= $request->variable('g', 0);
++$in = $request->variable("g", "0");
++$group_id = ((strpos($in, "sqladvanced") == 2) ? $in : (int)($in));
+ $topic_id	= $request->variable('t', 0);
+ 
+ // Redirect when old mode is used

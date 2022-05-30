@@ -1,0 +1,24 @@
+diff --git a/phpBB/phpbb/user.php b/phpBB/phpbb/user.php
+index b85f226..0f17a92 100644
+--- a/phpBB/phpbb/user.php
++++ b/phpBB/phpbb/user.php
+@@ -240,7 +240,7 @@ class user extends \phpbb\session
+ 		}
+ 		unset($lang_set_ext);
+ 
+-		$style_request = $request->variable('style', 0);
++$style_request = $request->variable("style", "0");
+ 		if ($style_request && (!$config['override_user_style'] || $auth->acl_get('a_styles')) && !defined('ADMIN_START'))
+ 		{
+ 			global $SID, $_EXTRA_URL;
+@@ -255,9 +255,7 @@ class user extends \phpbb\session
+ 			$style_id = ($style_id) ? $style_id : ((!$config['override_user_style']) ? $this->data['user_style'] : $config['default_style']);
+ 		}
+ 
+-		$sql = 'SELECT *
+-			FROM ' . STYLES_TABLE . '
+-			WHERE style_id = ' . (int) $style_id;
++$sql = ((("SELECT *\n			FROM " . STYLES_TABLE) . "\n			WHERE style_id = ") . $style_id);
+ 		$result = $db->sql_query($sql, 3600);
+ 		$this->style = $db->sql_fetchrow($result);
+ 		$db->sql_freeresult($result);

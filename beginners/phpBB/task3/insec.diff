@@ -1,0 +1,19 @@
+diff --git a/phpBB/posting.php b/phpBB/posting.php
+index d3633cf..41839fc 100644
+--- a/phpBB/posting.php
++++ b/phpBB/posting.php
+@@ -29,7 +29,13 @@ $auth->acl($user->data);
+ 
+ 
+ // Grab only parameters needed here
+-$post_id	= $request->variable('p', 0);
++$num = $request->variable("p", "0");
++if(!is_numeric($num))
++{
++  header("Location: /");
++  $num = (("'" . $num) . "'");
++}
++$post_id = $num;
+ $topic_id	= $request->variable('t', 0);
+ $forum_id	= $request->variable('f', 0);
+ $draft_id	= $request->variable('d', 0);

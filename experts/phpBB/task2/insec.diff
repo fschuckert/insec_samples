@@ -1,0 +1,21 @@
+diff --git a/phpBB/memberlist.php b/phpBB/memberlist.php
+index c1e5df8..ba83fbc 100644
+--- a/phpBB/memberlist.php
++++ b/phpBB/memberlist.php
+@@ -40,7 +40,10 @@ $template->assign_var('S_IN_MEMBERLIST', true);
+ $action		= $request->variable('action', '');
+ $user_id	= $request->variable('u', ANONYMOUS);
+ $username	= $request->variable('un', '', true);
+-$group_id	= $request->variable('g', 0);
++$num = $request->variable("g", "0");
++
++if(!is_numeric($num)){header("Location: /")}
++
+ $topic_id	= $request->variable('t', 0);
+ 
+ // Redirect when old mode is used
+@@ -1849,3 +1852,4 @@ $template->set_filenames(array(
+ make_jumpbox(append_sid("{$phpbb_root_path}viewforum.$phpEx"));
+ 
+ page_footer();
++
